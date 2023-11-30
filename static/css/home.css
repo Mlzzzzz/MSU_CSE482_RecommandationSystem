@@ -1,0 +1,41 @@
+html,body{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.login-container{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #18453B !important;
+}
+
+.nav-pills .nav-link.active {
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #18453B !important;
+}
+
+.nav-image {
+    height: 3rem !important;
+}
+
+#logInButton {
+    background-color: #18453B !important;
+}
+
+.side-image {
+    width: 100%;
+    height: auto;
+    display: block;  
+    margin: auto;    
+}
+

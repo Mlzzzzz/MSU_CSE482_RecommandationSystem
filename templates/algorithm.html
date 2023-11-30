@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <img src="{{ url_for('static', filename='pictures/Michigan_State_Athletics_logo.png') }}"
+                    alt="Spartan Image" class="nav-image">
+            </div>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="{{ url_for('home') }}"
+                        class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('algorithm') }}"
+                        class="nav-link {% if request.endpoint == 'algorithm' %}active{% endif %}">Algorithm</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('about') }}"
+                        class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
+                </li>
+            </ul>
+        </header>
+
+    </div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/algorithm.css') }}">
+</head>
+
+<body>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{{ url_for('static', filename='pictures/algorithm_left.png') }}" alt="movie posters collage"
+                    class="img-fluid">
+            </div>
+
+            <div class="col-md-8 col-lg-8" style="padding-left: 160px; padding-right: 160px;">
+                <p><strong>
+                        <h5>Introduction:</h5>
+                    </strong></p>
+                <p>
+                    Our recommendation system employs two main methodologies: User-Based and Item-Based Collaborative
+                    Filtering. These methods rely on the analysis of historical user behavior to predict future
+                    preferences.
+                </p>
+
+                <h5>User-Based Collaborative Filtering</h5>
+                <p>
+                    The principle of User-Based filtering is that if two users have rated certain items similarly in
+                    the
+                    past, they are likely to have similar ratings for other items in the future. The formula for
+                    predicting a new rating is as follows:
+                    <br>
+                    <span class="latex">
+                        $$ \text{pred}(u, i) = \bar{r}_u + \frac{\sum_{n \in \text{neighbors}(u)} \text{sim}(u, n)
+                        \cdot
+                        (r_{ni} - \bar{r}_n)}{\sum_{n \in \text{neighbors}(u)} \text{sim}(u, n)} $$
+                    </span>
+                    Here, \(\bar{r}_u\) represents the average ratings of user \(u\), and \(\bar{r}_n\) represents
+                    the
+                    average ratings of neighbor \(n\).
+                </p>
+
+                <h5>Item-Based Collaborative Filtering</h5>
+                <p>
+                    The Item-Based approach posits that if a user has positively rated an item, and this item is
+                    similar
+                    to another item, then the user might also favor the similar item. The equation to predict a
+                    new
+                    rating is:
+                    <br>
+                    <span class="latex">
+                        $$ \text{pred}(u, i) = \frac{\sum_{j \in \text{ratedItems}(u)} \text{sim}(i, j) \cdot
+                        r_{uj}}{\sum_{j \in \text{ratedItems}(u)} \text{sim}(i, j)} $$
+                    </span>
+                    This involves generating a prediction for an item \(i\) for user \(u\) using a weighted sum
+                    of user
+                    \(u\)'s ratings for items most similar to \(i\).
+                </p>
+                <br></br>
+                <p>
+                    While the fundamental principle of Collaborative Filtering is straightforward, the actual
+                    development of our systems revealed
+                    a complex balance between model precision, user experience, and computing power.
+                </p>
+                <img src="{{ url_for('static', filename='pictures/compromise_triangle.png') }}"
+                    alt="compromise triangle" class="compromise-picture">
+                <p>
+                    This balance is depicted in the "compromise triangle" shown above. Each corner of the
+                    triangle represents one of the three critical factors we had to consider.
+                </p>
+                <p>We tried some really simple model that that could deliver recommendations in milliseconds,
+                    and you can imagine the result was not satisfactory.</p>
+                <p>we tested complex models requiring up to 10 minutes for a single recommendation, which
+                    negatively impacted the user experience.</p>
+                <p>We also explored the brute-force approach to building a user-similarity matrix. This method,
+                    however, demanded over 600GB of memory,
+                    surpassing the capabilities of our computing resources, which were limited to our personal
+                    computers.
+                </p>
+                <p>
+                    The algorithms we currently employ are practical solutions developed in haste.
+                    They represent our attempt to strike a balance between the three competing factors. We are
+                    always open to suggestions and advice to refine our approach.
+                </p>
+                <p>
+                    Implementations of our algorithms are detailed on our <a href="example site">GitHub site</a>.
+                </p>
+                <br></br>
+
+                <p><strong>
+                        <h5>User-Based Collaborative Filtering:</h5>
+                    </strong></p>
+                <h5>Step 1: Find Nearest Neighbours Based on Cosine Similarity</h5>
+                <br></br>
+                <img src="{{ url_for('static', filename='pictures/user-based-step1.svg') }}" alt="step 1 flow chart"
+                    class="flow-chart">
+                <br></br>
+                <p>
+                    The initial step in our User-Based Collaborative Filtering approach, as illustrated in the flow
+                    chart above,
+                    involves identifying the top 'n' nearest neighbours of a given user. This is achieved through the
+                    calculation of cosine similarity,
+                    as represented by the following equation:
+                    $$
+                    \cos(\mathbf{d1}, \mathbf{d2}) = \frac{\mathbf{d1} \cdot \mathbf{d2}}{\|\mathbf{d1}\|
+                    \|\mathbf{d2}\|}
+                    $$
+                <p>
+                    In this equation, \( \cdot \) signifies the vector dot product, and \( \|\mathbf{d}\| \) denotes the
+                    length (or norm) of vector \( \mathbf{d} \).
+                </p>
+                The outcome of this step, the identified top 'n' nearest neighbours, is then carried forward to the
+                subsequent step in the filtering process.
+                </p>
+                <p>
+                    The choice of 'n', the number of nearest neighbours, is crucial in this phase. To optimize 'n' for
+                    both precision and efficiency, we conducted a grid search across various 'n' values. Our findings
+                    indicated that a value of 20 strikes an effective balance between accuracy and computational
+                    efficiency.
+                </p>
+
+                <h5>Step 2: Predict Ratings of Possible Movies and Get Recommendations</h5>
+                <br></br>
+                <img src="{{ url_for('static', filename='pictures/user-based-step2.svg') }}" alt="step 2 flow chart"
+                    class="flow-chart">
+                <br></br>
+                <p>
+                    Following the identification of the input user's nearest neighbors, the next step involves filtering
+                    out each neighbor's top 10 ratings movies.
+                    These selected movies form the "possible recommendations" pool.
+                </p>
+                <p>
+                    For each movie in this pool, we predict how likely the input user is to enjoy it.
+                    This prediction is based on a combination of the neighbor's rating of the movie and the similarity
+                    between the input user and the neighbor.
+                    This process utilizes the prediction equation discussed in the introduction section.
+                </p>
+                <p>
+                    Finally, by sorting these movies according to their predicted ratings,
+                    we generate a list of recommendations tailored for the input user. This list represents the most
+                    likely movies to appeal to the user,
+                    based on the preferences of similar users.
+                </p>
+                <br></br>
+
+                <p><strong>
+                        <h5>Item-Based Collaborative Filtering:</h5>
+                    </strong></p>
+                <h5>Step 1: Refine Similarities in Terms of Tags, Actors, and Director</h5>
+                <br></br>
+                <img src="{{ url_for('static', filename='pictures/item-based-step1.svg') }}" alt="step 1 flow chart"
+                    class="flow-chart">
+                <br></br>
+                <p>
+                    To enhance the representation of movie similarities, we focus on three dimensions: tags, actors, and
+                    directors.
+                    The refinement process for each dimension is detailed below:
+                </p>
+                <ol>
+                    <li><strong>Tags:</strong>
+                        <ul>
+                            <li>We processed the 'tag_count' and 'survey_answers' data files to construct a movie-tags
+                                matrix.</li>
+                            <li>Using this matrix, we calculated the cosine similarity between movie pairs.</li>
+                            <li>For each movie, we identified the top 100 movies with the highest cosine similarity.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Actors:</strong>
+                        <ul>
+                            <li>Actor information for each movie was extracted from 'metadata' data files.</li>
+                            <li>We calculated the Jaccard similarity between movie pairs, represented as binary 0/1
+                                vectors, using the formula:
+                                <div>
+                                    \( Jaccard(x, y) = \frac{M_{11}}{M_{01} + M_{10} + M_{11}} \)
+                                </div>
+                                where \( M_{ij} \) is the number of elements where \( x = i \) and \( y = j \).
+                            </li>
+
+                            <li>Like with tags, the top 100 movies with the highest Jaccard similarity were identified
+                                for each movie.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Director:</strong>
+                        <ul>
+                            <li>We created a dictionary where each movie is a key, and the values are all other movies
+                                directed by the same director.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <h5>Step 2: Determine Coefficients of Tags, Actors, and Director</h5>
+                <p>
+                    Our model posits that the overall similarity between movies is a linear combination of similarities in terms of tags, actors, and directors. 
+                    To initialize the coefficients for each similarity aspect, we followed a process for individual users as described below:
+                </p>
+                <ul>
+                    <li>For each user, we divided their movie ratings into three sets: baseline set, optimization set and test set.</li>
+                </ul>
+                <ul>
+                    <li>We employed the mean squared error on the Optimization Set as the objective function to optimize the coefficients. 
+                    This process involves adjusting the weights attributed to tags, actors, and directors to minimize the prediction error.</li>
+                </ul>
+                <p>
+                    Then We applied this optimization process to a sample of 500 users, 
+                    adjusting coefficients to best fit their individual preferences. After conducting statistical analysis on these personalized coefficients, 
+                    we established a set of initial general coefficients for the recommendation system.
+                </p>
+                <p>
+                    These initial coefficients can be dynamically adjusted during the deployment and maintenance phases of our recommendation system to continually enhance performance.
+                </p>
+                <h5>Step 3: Predict Ratings of Possible Movies and Get Recommendations</h5>
+                <br></br>
+                <img src="{{ url_for('static', filename='pictures/item-based-step3.svg') }}" alt="step 3 flow chart"
+                    class="flow-chart-big">
+                <br></br>
+                <p>
+                    After determining the coefficients for the three dimensions (tags, actors, and directors), 
+                    we follow a process for generating movie recommendations as described below:
+                </p>
+                <p>
+                    For each movie that the user has rated:
+                    <ul>
+                        <li>Filter out movies that share the same director.</li>
+                        <li>Filter out movies listed in 'similar_movies_actors' for the rated movie.</li>
+                        <li>Filter out movies listed in 'similar_movies_tags' for the rated movie.</li>
+                        <li>Combine all these included movies into a new "possible recommendations" pool.</li>
+                    </ul>
+                </p>
+                <p>
+                    For each movie 'i' in the "possible recommendations" pool and each movie 'j' in 'rated_movies', 
+                    calculate the combined similarity using the previously determined weights.
+                </p>
+                <p>
+                    Calculate a weighted rating for each movie in the "possible recommendations" pool based on these similarity scores
+                    using the equation discussed in the introduction section. Sort weighted ratings and get recommendations for the user.
+                    This list is based on the preference of similar movies.
+                </p>
+            </div>
+
+            <div class="col-2">
+                <img src="{{ url_for('static', filename='pictures/algorithm_right.png') }}" alt="movie posters collage"
+                    class="img-fluid">
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="container-footer">
+    <!-- Footer -->
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{{ url_for('algorithm') }}"
+                    class="nav-link px-2 text-body-secondary">Algorithm</a></li>
+            <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link px-2 text-body-secondary">About</a>
+            </li>
+        </ul>
+        <p class="text-center text-body-secondary">Developed by Linqing Mo and Jingqiao Li, Fall 2023</p>
+    </footer>
+</div>
+
+</html>

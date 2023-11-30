@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <img src="{{ url_for('static', filename='pictures/Michigan_State_Athletics_logo.png') }}"
+                    alt="Spartan Image" class="nav-image">
+            </div>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="{{ url_for('home') }}"
+                        class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('algorithm') }}"
+                        class="nav-link {% if request.endpoint == 'algorithm' %}active{% endif %}">Algorithm</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('about') }}"
+                        class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
+                </li>
+            </ul>
+        </header>
+
+    </div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{{ url_for('static', filename='pictures/about_left.png') }}" alt="movie posters collage"
+                    class="img-fluid">
+            </div>
+
+            <div class="col-md-8 col-lg-8" style="padding-left: 160px; padding-right: 160px;">
+                <p><strong>Dataset Overview:</strong></p>
+                <p>
+                    This project utilizes the MovieLens Tag Genome Dataset 2021, available at
+                    <a href="https://grouplens.org/datasets/movielens/tag-genome-2021">GroupLens</a>. This dataset
+                    comprises 10.5 million computed tag-movie relevance scores 
+                    from a pool of 1,084 tags applied to 9,734 movies, released in December 2021.
+                </p>
+
+                <p>The collection and generation of this dataset followed the methods described in:</p>
+                <ol>
+                    <li>
+                        <a href="https://doi.org/10.1145/3404835.3463019">Kotkov et al., 2021</a>:
+                        Kotkov, D., Maslov, A., and Neovius, M. 2021. Revisiting the tag relevance prediction problem. 
+                        In <i>Proceedings of the 44th. International ACM SIGIR conference on Research and Development in Information Retrieval</i>.
+                    </li>
+                    <li>
+                        <a href="https://doi.org/10.1145/2362394.2362395">Vig et al., 2012</a>:
+                        Vig, J., Sen, S., and Riedl, J. 2012. The tag genome: Encoding community knowledge to support novel interaction. 
+                        <i>ACM Trans. Interact. Intell. Syst. </i>2, 1-44.
+                    </li>
+                </ol>
+
+                <p><strong>Dataset Usage and Permissions:</strong></p>
+                <p>
+                    The dataset utilized in this project is not available for public distribution. Permission for its use has been granted by GroupLens, 
+                    a research laboratory affiliated with the University of Minnesota, Twin Cities. 
+                    Individuals or entities seeking access to the original dataset should direct their inquiries to GroupLens.
+                </p>
+
+                <p><strong>Data Files Used:</strong></p>
+                <ul>
+                    <li>"metadata.json": 84,661 lines of movie information from MovieLens including movie title, directors, actors, date that the movie was added to MovieLens, average rating, movie id on IMDB, movie identification id.</li>
+                    <li>"tags.json": 1094 lines of information about movie tags including movie tag and tag id.</li>
+                    <li>"tag_count.json":  212,704 lines of numbers of times MovieLens users attached tags to movies including movie identification id, tag id and number of times users have attached the tag to the movie.</li>
+                    <li>"ratings.json": 28,490,116 lines of user ratings on MovieLens - movie identification id, user id and rating. Each rating corresponds to several stars from 0.5 till 5 with the granularity of 0.5 star.</li>
+                    <li>"survey_answers.json": 58,903 lines of ratings that MovieLens users gave to movie-tag pairs in the survey including user id, movie identification id, tag id and movie-tag rating. 
+                        The users were asked to indicate the degree, to which a tag applies to a movie on a 5-point scale from the tag not applying at all (1 point) to applying very strongly (5 points).</li>
+                </ul>
+                <p>
+                    The data preprocessing process is detailed on our <a href="example site">GitHub site</a>.
+                </p>
+
+                <p><strong>Restrictions on Commercial Utilization:</strong></p>
+                <p>
+                    It is important to emphasize that the development and deployment of this program have been carried out solely for academic and educational objectives. 
+                    The program is not designed or permitted for use in any commercial capacity.
+                </p>
+
+                <p><strong>Contact and Feedback:</strong></p>
+                <p>
+                    We'd absolutely love to hear from you! If you have any thoughts, ideas, or questions about our project, please know that we're more than happy to engage. Don't hesitate to reach out to us at <a href="mailto:molinqin@msu.edu">molinqin@msu.edu</a>. 
+                </p>
+                
+            </div>
+
+            <div class="col-2">
+                <img src="{{ url_for('static', filename='pictures/about_right.png') }}" alt="movie posters collage"
+                    class="img-fluid">
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="container-footer">
+    <!-- Footer -->
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{{ url_for('algorithm') }}"
+                    class="nav-link px-2 text-body-secondary">Algorithm</a></li>
+            <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link px-2 text-body-secondary">About</a>
+            </li>
+        </ul>
+        <p class="text-center text-body-secondary">Developed by Linqing Mo and Jingqiao Li, Fall 2023</p>
+    </footer>
+</div>
+
+</html>

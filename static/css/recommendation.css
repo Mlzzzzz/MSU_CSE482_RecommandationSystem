@@ -1,0 +1,54 @@
+.container-body {
+    display: flex;
+    flex-direction: row; 
+}
+
+.search-bar {
+    flex: 2; 
+}
+
+#rating-container, .user-based-recommendations, .item-based-recommendations {
+    flex: 2; 
+}
+
+#rating-container, .user-based-recommendations, .item-based-recommendations {
+    display: none;
+}
+
+.header-content {
+    display: flex;
+    align-items: center; 
+}
+
+.image-and-user-id {
+    display: flex;
+    align-items: center;
+}
+
+.user-id-container {
+    margin-left: 15px;
+}
+
+#user_id {
+    font-size: 2rem;
+    color: #18453B;
+    margin-bottom: 0;
+}
+
+#movie-search {
+    background-color: #f2fff2 !important;
+}
+
+#submit-rating {
+    background-color: #18453B !important;
+}
+
+#generate-user-based {
+    background-color: #18453B !important;
+    width: 10rem;
+}
+
+#generate-item-based {
+    background-color: #18453B !important;
+    width: 10rem;
+}
