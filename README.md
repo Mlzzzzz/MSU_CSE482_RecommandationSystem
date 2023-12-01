@@ -6,6 +6,8 @@ In this project, our recommendation system employs two main methodologies: User-
 
 We'd absolutely love to hear from you! If you have any thoughts, ideas, or questions about our project, please know that we're more than happy to engage. Don't hesitate to reach out to us at: molinqin@msu.edu.
 
+The demonstration of our website can be accessed at the following URLs: http://13.58.31.191 and http://18.223.20.111 (as an alternative). Please note that our website is hosted on free servers, which may occasionally enter a sleep mode after periods of inactivity. If you experience any difficulty accessing the website, we recommend trying again after a few minutes. This should allow the servers to reactivate. For immediate assistance or if the issue persists, please feel free to contact us via email.
+
 ### Dataset Overview ###
 
 This project utilizes the MovieLens Tag Genome Dataset 2021, available at GroupLens. This dataset comprises 10.5 million computed tag-movie relevance scores from a pool of 1,084 tags applied to 9,734 movies, released in December 2021.
